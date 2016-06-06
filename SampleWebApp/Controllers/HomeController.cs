@@ -1,28 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using SampleWebApp.Services;
 
 namespace SampleWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeService _homeService;
+
+        public HomeController()
+            :this(new HomeService())
+        {
+            
+        }
+
+        public HomeController(IHomeService homeService)
+        {
+            _homeService = homeService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var index = _homeService.GetIndexName();
+            return View(index);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = _homeService.GetAboutDescription();
 
-            return View();
+            return View("About");
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = _homeService.GetContractMessage();
 
             return View();
         }
