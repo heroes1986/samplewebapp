@@ -9,7 +9,7 @@ namespace SampleWebApp.Models
     {
         public bool IsMenuEnabled
         {
-            get { return IsEnabled("Menu"); }
+            get { return IsEnabled("LinkButton"); }
         }
     }
 }
