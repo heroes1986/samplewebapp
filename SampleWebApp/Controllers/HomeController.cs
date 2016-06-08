@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SampleWebApp.Models;
 using SampleWebApp.Services;
 
 namespace SampleWebApp.Controllers
@@ -20,8 +21,9 @@ namespace SampleWebApp.Controllers
 
         public ActionResult Index()
         {
+            var model = new Home();
             var index = _homeService.GetIndexName();
-            return View(index);
+            return View(index, model);
         }
 
         public ActionResult About()
